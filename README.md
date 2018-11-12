@@ -1,1 +1,4 @@
 # WC-DevOps
+
+##REQUERIMENTS
+  * JAVA 8
