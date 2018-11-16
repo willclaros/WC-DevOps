@@ -12,10 +12,10 @@ services:
     image: "registry.jala.info/devops/gocd/gocd-server:v18.5.0"
     ports:
       - "8153:8153"
-    links:
-      - gocd_agent
   gocd_agent:
     image: "registry.jala.info/devops/gocd/gocd-agent-alpine-3.7:v18.5.0"
+    environment:
+      - GO_SERVER_URL:https://gocd_server:8153/go
     volumes:
       - ./godata:/godata
       - ./go:/home/go
