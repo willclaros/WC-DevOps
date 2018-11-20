@@ -1,5 +1,11 @@
+plugins {
+  id "org.sonarqube" version "2.6"
+  id "org.owasp.dependencycheck" version "3.3.4"
+}
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'jacoco'
 
 version = '1.0'
 jar {
@@ -22,10 +28,11 @@ test {
     systemProperties 'property': 'value'
 }
 
-uploadArchives {
-    repositories {
-       flatDir {
-           dirs 'repos'
-       }
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = true
     }
 }
+
+check.dependsOn jacocoTestReport 
